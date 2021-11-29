@@ -55,11 +55,6 @@ def generate_key():
 #m = 8 
 #c = 8^7 mod 589 = 312 
 def encrypt(msg, public_key):
-  print("----------------")
-  print("encrypt")
-  print(f"msg: {msg}")
-  print(f"e: {public_key[0]}")
-  print(f"n: {public_key[1]}")
   return pow(msg, public_key[0], mod=public_key[1])
 
 
@@ -69,9 +64,4 @@ def encrypt(msg, public_key):
 #c = 312 
 #m = 312^463 mod 589 = 8 
 def decrypt(msg, private_key):
-  print("----------------")
-  print("decrypt")
-  print(f"msg: {msg}")
-  print(f"e: {private_key[0]}")
-  print(f"n: {private_key[1]}")
   return pow(msg, private_key[0], mod=private_key[1])
