@@ -3,6 +3,19 @@ from sympy import nextprime
 from random import randint
 from itertools import count, islice
 
+def encrypt_msg(msg, public_key):
+  encrypted = []
+  for i in range(0, len(msg), 2):
+    encrypted.append(encrypt(int(msg[i : i+2]), public_key))
+  return encrypted
+
+def decrypt_msg(msg, private_key):
+  decrypted = []
+  for chunk in msg:
+    decrypted.append(decrypt(int(chunk), private_key))
+  return decrypted
+
+
 def is_prime(n):
     return n > 1 and all(n % i for i in islice(count(2), int(sqrt(n) - 1)))
 
