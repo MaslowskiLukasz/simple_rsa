@@ -39,7 +39,7 @@ def generate_key():
   n = p * q
   phi = (p - 1) * (q - 1)
   e = next_e(phi)
-  d = generate_d(e, 50)
+  d = generate_d(e, phi)
   print(f"p = {p}")
   print(f"q = {q}")
   print(f"n = {n}")
