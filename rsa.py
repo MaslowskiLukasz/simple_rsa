@@ -6,7 +6,7 @@ from itertools import count, islice
 def encrypt_msg(msg, public_key):
   encrypted = []
   for i in range(0, len(msg), 2):
-    encrypted.append(encrypt(int(msg[i : i+2]), public_key))
+    encrypted.append(encrypt(int(msg[i : i+2], 16), public_key))
   return encrypted
 
 def decrypt_msg(msg, private_key):
@@ -14,7 +14,6 @@ def decrypt_msg(msg, private_key):
   for chunk in msg:
     decrypted.append(decrypt(int(chunk), private_key))
   return decrypted
-
 
 def is_prime(n):
     return n > 1 and all(n % i for i in islice(count(2), int(sqrt(n) - 1)))
@@ -32,10 +31,10 @@ def is_prime(n):
 #Para e i n stanowią klucz publiczny, natomiast para d i n
   #jest kluczem prywatnym. 
 def next_e(phi):
-  random = randint(1, 100)
+  random = randint(1, 100_000)
   prime = nextprime(random)
   while gcd(prime, phi) != 1:
-    random = randint(1, 100)
+    random = randint(1, 100_000)
     prime = nextprime(random)
   return prime
   
@@ -77,4 +76,4 @@ def encrypt(msg, public_key):
 #c = 312 
 #m = 312^463 mod 589 = 8 
 def decrypt(msg, private_key):
-  return pow(msg, private_key[0], mod=private_key[1])
+  return hex(pow(msg, private_key[0], mod=private_key[1])).lstrip("0x")
