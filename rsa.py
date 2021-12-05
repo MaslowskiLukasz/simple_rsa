@@ -39,7 +39,6 @@ def next_e(phi):
   return prime
   
 def generate_d(e, phi):
-  d = 0
   d = randint(1, phi)
   while (e * d) % phi != 1:
     d = randint(1, phi)
