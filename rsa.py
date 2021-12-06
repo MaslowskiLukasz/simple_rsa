@@ -31,18 +31,15 @@ def is_prime(n):
 #Para e i n stanowią klucz publiczny, natomiast para d i n
   #jest kluczem prywatnym. 
 def next_e(phi):
-  random = randint(1, 100_000)
+  random = randint(1, phi)
   prime = nextprime(random)
   while gcd(prime, phi) != 1:
-    random = randint(1, 100_000)
+    random = randint(1, phi)
     prime = nextprime(random)
   return prime
   
 def generate_d(e, phi):
-  d = randint(1, phi)
-  while (e * d) % phi != 1:
-    d = randint(1, phi)
-  return d
+  return pow(e, -1, phi)
 
 def generate_key():
   p = nextprime(randint(1000, 9972))
@@ -58,7 +55,6 @@ def generate_key():
   print(f"e = {e}")
   print(f"d = {d}")
   return [e, n], [d, n]
-
 
 #szyfrowanie wiadomości:  
 #czynność przykład 
